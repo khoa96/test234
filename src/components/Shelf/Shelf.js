@@ -3,12 +3,14 @@ import './style.css';
 import Spinner from '../Spinner/Spinner';
 import Header from './header/Header/Header';
 import ProductList from './productlist/ProductList';
+import {connect} from 'react-redux';
 
-export default class Shelf extends Component {
+class Shelf extends Component {
     render() {
+        let { isFreeShipping } = this.props.filter;
         return (
             <React.Fragment>
-               <Spinner/>
+               {}
                 <div className="shelf-container">
                    <Header/>
                    <ProductList/>
@@ -17,3 +19,11 @@ export default class Shelf extends Component {
         )
     }
 }
+function mapStateToProps (state) {
+    return {
+        filter: state.filterReducer,
+        product: state.productReducer
+    }
+
+}
+export default connect(mapStateToProps)(Shelf)
